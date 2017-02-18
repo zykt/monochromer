@@ -3,7 +3,7 @@ from PIL import Image
 
 def convert(path, output_path='output.png'):
     """
-    Converts an image at :path: to grayscale and saves it at :output_path:
+    Converts an image at :path: to greyscale and saves it at :output_path:
     """
     img = Image.open(path)
     out = img.convert('L')
