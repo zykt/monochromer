@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>imageserver</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            function main_loop() {
+                // get status from server
+                // report progress
+                // and get image if done
+                $.get("status", function(status) {
+                    $("#progress").text(status);
+                    setTimeout(main_loop, 500);
+                });
+            }
+            $(document).ready(function() {
+                main_loop();
+            });
+        </script>
+    </head>
+    <body>
+        <p>Got an image '{{imagename}}'</p>
+        <p id="progress">Your image has been sent</p>
+        <a href="/">Another one!</a>
+    </body>
+</html>
