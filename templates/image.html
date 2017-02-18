@@ -9,12 +9,18 @@
                 // get status from server
                 // report progress
                 // and get image if done
+                // else repeat
                 $.get("status", function(status) {
-                    $("#progress").text(status);
-                    setTimeout(main_loop, 500);
+                    $("#progress").text(status.slice(3));
+                    if (status[2] == '2') {
+                        $("#image").attr("src", "../image/output.png");
+                    } else {
+                        setTimeout(main_loop, 500);
+                    }
                 });
             }
             $(document).ready(function() {
+                $("#image").hide()
                 main_loop();
             });
         </script>
@@ -23,5 +29,6 @@
         <p>Got an image '{{imagename}}'</p>
         <p id="progress">Your image has been sent</p>
         <a href="/">Another one!</a>
+        <img id="image" alt="Error! Image not found" />
     </body>
 </html>
